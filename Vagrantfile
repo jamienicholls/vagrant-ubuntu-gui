@@ -9,7 +9,8 @@ Vagrant.configure("2") do |config|
 
   # Currently "ubuntu/bionic64" on VirtualBox requires `type: "virtualbox"`
   # to make synced folder works.
-  config.vm.synced_folder ".", "/vagrant", type: "virtualbox"
+  # config.vm.synced_folder '.', '/vagrant', owner: 'vagrant', group: 'vagrant'
+  config.vm.synced_folder ".", "/vagrant", type: "virtualbox", automount: "true"
 
   # Add Google Chrome repository
   config.vm.provision :shell, inline: "wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub|sudo apt-key add -"
@@ -35,6 +36,9 @@ Vagrant.configure("2") do |config|
 
   # Add Firefox
   config.vm.provision :shell, inline: "sudo apt install -y firefox"
+  
+  # Add qbittorrent
+  config.vm.provision :shell, inline: "sudo apt install -y qbittorrent"
 
   # Restart
   config.vm.provision :shell, inline: "sudo shutdown -r now"
