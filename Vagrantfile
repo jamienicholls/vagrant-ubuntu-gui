@@ -36,9 +36,6 @@ Vagrant.configure("2") do |config|
 
   # Add Firefox
   config.vm.provision :shell, inline: "sudo apt install -y firefox"
-  
-  # Add qbittorrent
-  config.vm.provision :shell, inline: "sudo apt install -y qbittorrent"
 
   # Restart
   config.vm.provision :shell, inline: "sudo shutdown -r now"
